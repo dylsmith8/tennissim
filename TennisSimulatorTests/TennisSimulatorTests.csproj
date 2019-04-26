@@ -50,7 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Helpers\MockMatchParameters.cs" />
-    <Compile Include="UnitTest1.cs" />
+    <Compile Include="RallyTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

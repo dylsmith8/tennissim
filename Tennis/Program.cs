@@ -21,7 +21,7 @@ namespace Tennis
             MatchParameters parameters = new MatchParameters();
             Game game = new Game();
 
-            Console.WriteLine(game.Play(parameters);
+            Console.WriteLine(game.Play(parameters));
 
             Console.ReadLine();
         }

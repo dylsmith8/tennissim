@@ -7,6 +7,7 @@
         Fifteen,
         Thirty,
         Forty,
-        Adv
+        Adv,
+        Winner
     }
 }

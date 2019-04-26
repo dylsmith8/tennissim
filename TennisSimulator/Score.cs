@@ -48,6 +48,9 @@ namespace TennisSimulator
                 case PlayerScore.Forty:
                     playerScore = PlayerScore.Adv;
                     break;
+                case PlayerScore.Adv:
+                    playerScore = PlayerScore.Winner;
+                    break;
             }
 
             return playerScore;
@@ -57,6 +60,19 @@ namespace TennisSimulator
         {
             if (Player1Score == PlayerScore.Forty && Player2Score == PlayerScore.Forty)
                 return Tuple.Create(GameOutcome.Deuce, 0);
+
+            // reset if both get advantage
+            if (Player1Score == PlayerScore.Adv && Player2Score == PlayerScore.Adv)
+            {
+                Player1Score = PlayerScore.Forty; Player2Score = PlayerScore.Forty;
+                return Tuple.Create(GameOutcome.Deuce, 0);
+            }
+            
+            // handle case where one player is broken adv
+            if (Player1Score == PlayerScore.Winner && Player2Score == PlayerScore.Forty)
+                return Tuple.Create(GameOutcome.Win, 1);
+            else if (Player2Score == PlayerScore.Winner && Player1Score == PlayerScore.Forty)
+                return Tuple.Create(GameOutcome.Win, 1);
 
             if (Player1Score == PlayerScore.Adv || Player2Score == PlayerScore.Adv)
             {
