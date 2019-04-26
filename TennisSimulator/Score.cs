@@ -10,24 +10,26 @@ namespace TennisSimulator
 
         public Score()
         {
-            Player1Score = PlayerScore.Love;
-            Player2Score = PlayerScore.Love;
+            ResetScores();
         }
 
-        public Tuple<GameOutcome, Outcome> UpdateScore(int scorer)
+        public GameOutcome UpdateScore(int scorer)
         {
             if (scorer == 1)
                 Player1Score = UpdateScore(Player1Score);
             else
                 Player2Score = UpdateScore(Player2Score);
 
-            Tuple<GameOutcome, int> roundResult = DetermineGameOutcome();
+            Tuple<Enums.GameOutcome, int> roundResult = DetermineGameOutcome();
 
-            Outcome outcome = null;
-            if (roundResult != null && roundResult.Item1 == GameOutcome.Win)
-                outcome = new Outcome(roundResult.Item2, string.Format("Player 1: {0}. Player 2: {1}", Player1Score, Player2Score));
+            GameOutcome outcome = null;
+            if (roundResult != null && roundResult.Item1 == Enums.GameOutcome.Win)
+            {
+                outcome = new GameOutcome(roundResult.Item2);
+                ResetScores();
+            }
 
-            return Tuple.Create(roundResult.Item1, outcome);
+            return outcome;
         }
 
         private PlayerScore UpdateScore(PlayerScore currentScore)
@@ -56,43 +58,49 @@ namespace TennisSimulator
             return playerScore;
         }
 
-        private Tuple<GameOutcome, int> DetermineGameOutcome()
+        private Tuple<Enums.GameOutcome, int> DetermineGameOutcome()
         {
             if (Player1Score == PlayerScore.Forty && Player2Score == PlayerScore.Forty)
-                return Tuple.Create(GameOutcome.Deuce, 0);
+                return Tuple.Create(Enums.GameOutcome.Deuce, 0);
 
             // reset if both get advantage
             if (Player1Score == PlayerScore.Adv && Player2Score == PlayerScore.Adv)
             {
                 Player1Score = PlayerScore.Forty; Player2Score = PlayerScore.Forty;
-                return Tuple.Create(GameOutcome.Deuce, 0);
+                return Tuple.Create(Enums.GameOutcome.Deuce, 0);
             }
-            
-            // handle case where one player is broken adv
+
+            // handle case where a player has gone on to win the current game after having the advantage
             if (Player1Score == PlayerScore.Winner && Player2Score == PlayerScore.Forty)
-                return Tuple.Create(GameOutcome.Win, 1);
+                return Tuple.Create(Enums.GameOutcome.Win, 1);
             else if (Player2Score == PlayerScore.Winner && Player1Score == PlayerScore.Forty)
-                return Tuple.Create(GameOutcome.Win, 1);
+                return Tuple.Create(Enums.GameOutcome.Win, 1);
 
             if (Player1Score == PlayerScore.Adv || Player2Score == PlayerScore.Adv)
             {
                 if (Math.Abs(Player1Score - Player2Score) >= 2)
                 {
                     if (Player1Score > Player2Score)
-                        return Tuple.Create(GameOutcome.Win, 1);
+                        return Tuple.Create(Enums.GameOutcome.Win, 1);
                     else
-                        return Tuple.Create(GameOutcome.Win, 2);
+                        return Tuple.Create(Enums.GameOutcome.Win, 2);
                 }
                 else
                 {
                     if (Player1Score > Player2Score)
-                        return Tuple.Create(GameOutcome.Advantage, 1);
+                        return Tuple.Create(Enums.GameOutcome.Advantage, 1);
                     else
-                        return Tuple.Create(GameOutcome.Advantage, 2);
+                        return Tuple.Create(Enums.GameOutcome.Advantage, 2);
                 }
             }
 
-            return Tuple.Create(GameOutcome.None, 0);
+            return Tuple.Create(Enums.GameOutcome.None, 0);
+        }
+
+        private void ResetScores()
+        {
+            Player1Score = PlayerScore.Love;
+            Player2Score = PlayerScore.Love;
         }
     }
 }

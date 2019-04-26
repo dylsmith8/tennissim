@@ -39,10 +39,9 @@ namespace TennisSimulatorTests.Helpers
 
             if (_useScoreSequence)
             {
-                int toReturn = 0;
                 for (int i = 0; i < _scorerSequence.Count; i++)
                 {
-                    toReturn = Convert.ToInt32(new string(_scorerSequence[i], 1));
+                    int toReturn = Convert.ToInt32(new string(_scorerSequence[i], 1));
                     _scorerSequence.RemoveAt(i);
                     return toReturn;
                 }

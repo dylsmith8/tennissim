@@ -15,9 +15,9 @@ namespace TennisSimulatorTests
             MockMatchParameters mockParams = new MockMatchParameters(true, false); // player one scores first
 
             var game = new Game();
-            string result = game.Play(mockParams);
+            int result = game.Play(mockParams);
 
-            Assert.AreEqual("Player 1 has won the game.\n Player 1: Adv. Player 2: Love", result);
+            Assert.AreEqual(1, result);
         }
     
         [TestMethod]
@@ -27,9 +27,9 @@ namespace TennisSimulatorTests
             MockMatchParameters mockParams = new MockMatchParameters(false, false); // player one scores first
 
             var game = new Game();
-            string result = game.Play(mockParams);
+            int result = game.Play(mockParams);
 
-            Assert.AreEqual("Player 2 has won the game.\n Player 1: Love. Player 2: Adv", result);
+            Assert.AreEqual(2, result);
         }
 
         [TestMethod]
@@ -39,8 +39,8 @@ namespace TennisSimulatorTests
             MockMatchParameters mockParams = new MockMatchParameters(true, true); // player one scores first
 
             var game = new Game();
-            string result = game.Play(mockParams);
-            Assert.AreEqual("Player 1 has won the game.\n Player 1: Forty. Player 2: Winner", result);
+            int result = game.Play(mockParams);
+            Assert.AreEqual(1, result);
         }
 
         [TestMethod]
@@ -52,8 +52,8 @@ namespace TennisSimulatorTests
             MockMatchParameters mockParams = new MockMatchParameters(scoreSequence, true); // player one scores first
             var game = new Game();
 
-            string result = game.Play(mockParams);
-            Assert.AreEqual("Player 1 has won the game.\n Player 1: Adv. Player 2: Fifteen", result);
+            int result = game.Play(mockParams);
+            Assert.AreEqual(1, result);
         }
 
         [TestMethod]

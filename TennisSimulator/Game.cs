@@ -1,5 +1,4 @@
 ﻿using System;
-using TennisSimulator.Enums;
 using TennisSimulator.Helpers;
 
 namespace TennisSimulator
@@ -19,11 +18,14 @@ namespace TennisSimulator
             _score = new Score();
         }
 
-        public string Play(IMatchParameters matchParameters)
+        public int Play(IMatchParameters matchParameters)
         {
+            if (matchParameters == null)
+                throw new ArgumentNullException(nameof(matchParameters));
+
             while (true)
             {
-                Tuple<GameOutcome, Outcome> result = null;
+               GameOutcome result = null;
 
                 switch (matchParameters.GetRandomScorer())
                 {
@@ -37,9 +39,9 @@ namespace TennisSimulator
                         throw new InvalidOperationException("Invalid scorer.");
                 }
 
-                if (result.Item2 != null)
+                if (result != null)
                 {
-                    return result.Item2.ToString();
+                    return result.GetWinner();
                 }           
             }
         }

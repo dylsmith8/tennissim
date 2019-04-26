@@ -46,9 +46,11 @@
     <Compile Include="Game.cs" />
     <Compile Include="Helpers\IMatchParameters.cs" />
     <Compile Include="Helpers\MatchParameters.cs" />
-    <Compile Include="Outcome.cs" />
+    <Compile Include="Match.cs" />
+    <Compile Include="GameOutcome.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Score.cs" />
+    <Compile Include="Set.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
