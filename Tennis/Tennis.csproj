@@ -49,5 +49,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TennisSimulator\TennisSimulator.csproj">
+      <Project>{cfa35996-79d6-4715-a941-d0d5957e5b30}</Project>
+      <Name>TennisSimulator</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
