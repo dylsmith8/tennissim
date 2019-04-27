@@ -1,12 +1,13 @@
 ﻿using System;
+using TennisSimulator.Helpers;
 
 namespace TennisSimulator
 {
-    public class Set
+    public class Set : ISet
     {
         private int _player1WinCount;
         private int _player2WinCount;
-        private const int MIN_WIN_COUNT = 6; // pass in through an interface to make configurable?       
+        private const int MIN_WIN_COUNT = 6;   
 
         public int Winner { get; private set; }
         public string SetResult { get; private set; }
@@ -32,7 +33,7 @@ namespace TennisSimulator
 
         private void DetermineSetWinner()
         {
-            if (_player1WinCount >= 6 || _player2WinCount >= 6)
+            if (_player1WinCount >= MIN_WIN_COUNT || _player2WinCount >= MIN_WIN_COUNT)
             {
                 if (Math.Abs(_player1WinCount - _player2WinCount) >= 2)
                 {

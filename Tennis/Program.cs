@@ -14,10 +14,10 @@ namespace Tennis
             // 2. Does not take into account who 'serves'
             // 3. Random player wins a rally
 
-            IMatchParameters parameters = new MatchParameters();
-            Match match = new Match();           
+            IMatchParameters parameters = new MatchParameters(3);
+            Match match = new Match(parameters);           
 
-            Console.WriteLine(match.Play(parameters));
+            Console.WriteLine(match.Play());
             Console.ReadLine();
         }
     }

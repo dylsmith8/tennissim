@@ -46,6 +46,7 @@
     <Compile Include="Game.cs" />
     <Compile Include="Helpers\IMatchParameters.cs" />
     <Compile Include="Helpers\MatchParameters.cs" />
+    <Compile Include="Helpers\ISet.cs" />
     <Compile Include="Match.cs" />
     <Compile Include="GameOutcome.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

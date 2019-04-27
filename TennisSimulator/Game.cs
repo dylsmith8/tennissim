@@ -8,7 +8,7 @@ namespace TennisSimulator
         private readonly int _player1Id;
         private readonly int _player2Id;
 
-        private Score _score;
+        private readonly Score _score;
 
         public Game()
         {
@@ -40,9 +40,7 @@ namespace TennisSimulator
                 }
 
                 if (result != null)
-                {
-                    return result.GetWinner();
-                }           
+                    return result.GetWinner();       
             }
         }
     }
