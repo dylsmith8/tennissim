@@ -50,7 +50,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Helpers\MockMatchParameters.cs" />
-    <Compile Include="RallyTests.cs" />
+    <Compile Include="GameTests.cs" />
+    <Compile Include="Helpers\MockSet.cs" />
+    <Compile Include="MatchTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

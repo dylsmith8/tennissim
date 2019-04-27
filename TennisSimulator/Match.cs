@@ -18,13 +18,12 @@ namespace TennisSimulator
 
         public string Play()
         {
-            Set currentSet;
+            ISet currentSet;
 
             // match must play until there is a result
             foreach (var set in _playedSets)
             {
-                currentSet = set as Set;
-                //_playedSets.Add(currentSet);
+                currentSet = set;
 
                 // continue playing some games until someone wins the current set
                 while (currentSet.Winner == 0)

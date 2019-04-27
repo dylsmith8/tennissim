@@ -6,7 +6,7 @@ using System;
 namespace TennisSimulatorTests
 {
     [TestClass]
-    public class RallyTests
+    public class GameTests
     {
         [TestMethod]
         [Description("Only player 1 scores points till victory")]
@@ -33,7 +33,7 @@ namespace TennisSimulatorTests
         }
 
         [TestMethod]
-        [Description("Game played up till deuece - player 1 then wins after advantage")]
+        [Description("Game played up till deuce - player 1 then wins after advantage")]
         public void Deuce()
         {
             MockMatchParameters mockParams = new MockMatchParameters(true, true); // player one scores first

@@ -15,16 +15,23 @@ namespace TennisSimulatorTests.Helpers
         private bool _useScoreSequence;
         private List<char> _scorerSequence;
 
+        private List<char> _setWinningSequence;
+
         public MockMatchParameters(bool player1IsScorer, bool toggleScorer)
         {
-            this._player1IsScorer = player1IsScorer;
-            this._togglePlayers = toggleScorer;
+            _player1IsScorer = player1IsScorer;
+            _togglePlayers = toggleScorer;
         }
 
         public MockMatchParameters(string scoreSequence, bool useScoreSequence) : this(false, false)
         {
             _useScoreSequence = true;
             _scorerSequence = scoreSequence.ToCharArray().ToList();
+        }
+
+        public MockMatchParameters(string setWinningSequence)
+        {
+            _setWinningSequence = setWinningSequence.ToCharArray().ToList();
         }
 
         public int GetRandomScorer()
@@ -39,7 +46,7 @@ namespace TennisSimulatorTests.Helpers
 
             if (_useScoreSequence)
             {
-                for (int i = 0; i < _scorerSequence.Count; i++)
+                for (int i = 0; i < _scorerSequence.Count;)
                 {
                     int toReturn = Convert.ToInt32(new string(_scorerSequence[i], 1));
                     _scorerSequence.RemoveAt(i);
@@ -48,6 +55,15 @@ namespace TennisSimulatorTests.Helpers
             }
 
             return _player1IsScorer ? 1 : 2;
+        }
+
+        public List<ISet> InitialiseMatchSets()
+        {
+            List<ISet> mockSets = new List<ISet>();
+            foreach (char winner in _setWinningSequence)
+                mockSets.Add(new MockSet(Convert.ToInt32(new string(winner, 1))));
+
+            return mockSets;
         }
     }
 }
