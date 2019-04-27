@@ -7,6 +7,11 @@ namespace TennisSimulator.Helpers
     {
         private readonly Random _rng;
         private readonly int _setCount;
+
+        /// <summary>
+        /// Initialises the match settings.
+        /// </summary>
+        /// <param name="setCount">Number of sets to be played</param>
         public MatchParameters(int setCount)
         {
             _rng = new Random();

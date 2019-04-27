@@ -52,6 +52,7 @@
     <Compile Include="Helpers\MockMatchParameters.cs" />
     <Compile Include="GameTests.cs" />
     <Compile Include="Helpers\MockSet.cs" />
+    <Compile Include="MatchTests.cs" />
     <Compile Include="SetTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
